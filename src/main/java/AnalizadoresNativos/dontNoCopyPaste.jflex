@@ -35,10 +35,12 @@ PUBLICA = "public"
 PRIVATEA = "private"
 PROTECTEDA = "protected"
 FINALA = "final"
+THISA = "this"
+IMPORTA = "import"
 
 //sentencias de control
 
-IFC = "if/If"
+IFC = "if"|"If"
 ELSEC = "else"
 FORC = "for"
 WHILEC = "while"
@@ -85,53 +87,55 @@ DOSBARRA = "//"
 
 %%
 
-{INTT}										{ System.out.printf("\nINTT (%s)", yytext()); }
-{BOOLEANT}								    { System.out.printf("\nBOOLEANT (%s)", yytext()); }
-{STRINGT}									{ System.out.printf("\nSTRINGT (%s)", yytext()); }
-{CHART}									    { System.out.printf("\nCHART (%s)", yytext()); }
-{DOUBLET}								    { System.out.printf("\nDOUBLET (%s)", yytext()); }
-{OBJECTT}									{ System.out.printf("\nOBJECTT  (%s)", yytext()); }
-{VOIDT}										{ System.out.printf("\nVOIDT (%s)", yytext()); }
+{INTT}										{ System.out.printf("\nINTT (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{BOOLEANT}								    { System.out.printf("\nBOOLEANT (%s)", yytext() +" en linea: "+yyline+" columna: "+yycolumn); }
+{STRINGT}									{ System.out.printf("\nSTRINGT (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{CHART}									    { System.out.printf("\nCHART (%s)", yytext() +" en linea: "+yyline+" columna: "+yycolumn); }
+{DOUBLET}								    { System.out.printf("\nDOUBLET (%s)", yytext() +" en linea: "+yyline+" columna: "+yycolumn); }
+{OBJECTT}									{ System.out.printf("\nOBJECTT  (%s)", yytext() +" en linea: "+yyline+" columna: "+yycolumn); }
+{VOIDT}										{ System.out.printf("\nVOIDT (%s)", yytext() +" en linea: "+yyline+" columna: "+yycolumn); }
 
-{PUBLICA}									{ System.out.printf("\nPUBLICA (%s)", yytext()); }
-{PRIVATEA}									{ System.out.printf("\nPRIVATEA (%s)", yytext()); }
-{PROTECTEDA}								{ System.out.printf("\nPROTECTEDA (%s)", yytext()); }
-{FINALA}								    { System.out.printf("\nFINALA (%s)", yytext()); }
+{PUBLICA}									{ System.out.printf("\nPUBLICA (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{PRIVATEA}									{ System.out.printf("\nPRIVATEA (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{PROTECTEDA}								{ System.out.printf("\nPROTECTEDA (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{FINALA}								    { System.out.printf("\nFINALA (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{THISA}                                     { System.out.printf("\nTHISA (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{IMPORTA}                                   { System.out.printf("\nIMPORTA (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
 
-{IFC}								        { System.out.printf("\nIFC (%s)", yytext()); }
-{ELSEC}								        { System.out.printf("\nELSEC (%s)", yytext()); }
-{FORC}								        { System.out.printf("\nFORC (%s)", yytext()); }
-{WHILEC}								    { System.out.printf("\nWHILEC (%s)", yytext()); }
-{DOWHILEC}								    { System.out.printf("\nDOWHILEC (%s)", yytext()); }
-{SWITCHC}								    { System.out.printf("\nSWITCHC (%s)", yytext()); }
+{IFC}								        { System.out.printf("\nIFC (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{ELSEC}								        { System.out.printf("\nELSEC (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{FORC}								        { System.out.printf("\nFORC (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{WHILEC}								    { System.out.printf("\nWHILEC (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{DOWHILEC}								    { System.out.printf("\nDOWHILEC (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{SWITCHC}								    { System.out.printf("\nSWITCHC (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
 
-{BREAKS}								    { System.out.printf("\nBREAKS  (%s)", yytext()); }
-{RETURNS}								    { System.out.printf("\nRETURNS (%s)", yytext()); }
+{BREAKS}								    { System.out.printf("\nBREAKS  (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{RETURNS}								    { System.out.printf("\nRETURNS (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
 
-{MAS}								        { System.out.printf("\nMAS (%s)", yytext()); }
-{MENOS}								        { System.out.printf("\nMENOS (%s)", yytext()); }
-{MULTIPLICACION}						    { System.out.printf("\nMULTIPLICACION (%s)", yytext()); }
-{DIVISION}								    { System.out.printf("\nDIVISION (%s)", yytext()); }
-{IGUAL}								        { System.out.printf("\nIGUAL (%s)", yytext()); }
-{ESDISTINTO}								{ System.out.printf("\nESDISTINTO (%s)", yytext()); }
-{Y}								            { System.out.printf("\nY (%s)", yytext()); }
-{O}								            { System.out.printf("\nO (%s)", yytext()); }
-{NO}								        { System.out.printf("\nNO (%s)", yytext()); }
-{MAYOR}								        { System.out.printf("\nMAYOR (%s)", yytext()); }
-{MAYORIGUAL}								{ System.out.printf("\nMAYORIGUAL (%s)", yytext()); }
-{MENOR}								        { System.out.printf("\nMENOR (%s)", yytext()); }
-{MENORIGUAL}								{ System.out.printf("\nMENORIGUAL (%s)", yytext()); }
+{MAS}								        { System.out.printf("\nMAS (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{MENOS}								        { System.out.printf("\nMENOS (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{MULTIPLICACION}						    { System.out.printf("\nMULTIPLICACION (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{DIVISION}								    { System.out.printf("\nDIVISION (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{IGUAL}								        { System.out.printf("\nIGUAL (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{ESDISTINTO}								{ System.out.printf("\nESDISTINTO (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{Y}								            { System.out.printf("\nY (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{O}								            { System.out.printf("\nO (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{NO}								        { System.out.printf("\nNO (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{MAYOR}								        { System.out.printf("\nMAYOR (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{MAYORIGUAL}								{ System.out.printf("\nMAYORIGUAL (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{MENOR}								        { System.out.printf("\nMENOR (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{MENORIGUAL}								{ System.out.printf("\nMENORIGUAL (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
 
-{PARENTESISABRE}							{ System.out.printf("\nPARENTESISABRE (%s)", yytext()); }
-{PARENTESISCIERRA}							{ System.out.printf("\nPARENTESISCIERRA (%s)", yytext()); }
-{LLAVEABRE}								    { System.out.printf("\nLLAVEABRE (%s)", yytext()); }
-{LLAVECIERRA}								{ System.out.printf("\nLLAVECIERRA  (%s)", yytext()); }
-{CORCHETEABRE}								{ System.out.printf("\nCORCHETEABRE (%s)", yytext()); }
-{CORCHETECIERRA}							{ System.out.printf("\nCORCHETECIERRA (%s)", yytext()); }
+{PARENTESISABRE}							{ System.out.printf("\nPARENTESISABRE (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{PARENTESISCIERRA}							{ System.out.printf("\nPARENTESISCIERRA (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{LLAVEABRE}								    { System.out.printf("\nLLAVEABRE (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{LLAVECIERRA}								{ System.out.printf("\nLLAVECIERRA  (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{CORCHETEABRE}								{ System.out.printf("\nCORCHETEABRE (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{CORCHETECIERRA}							{ System.out.printf("\nCORCHETECIERRA (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
 
-{PUNTOCOMA}							        { System.out.printf("\nPUNTOCOMA (%s)", yytext()); }
-{PUNTO}							            { System.out.printf("\nPUNTO (%s)", yytext()); }
-{DOSBARRA}							        { System.out.printf("\nDOSBARRA  (%s)", yytext()); }
+{PUNTOCOMA}							        { System.out.printf("\nPUNTOCOMA (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{PUNTO}							            { System.out.printf("\nPUNTO (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{DOSBARRA}							        { System.out.printf("\nDOSBARRA  (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
 
 
 
