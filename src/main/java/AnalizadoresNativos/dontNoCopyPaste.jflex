@@ -19,6 +19,21 @@ package AnalizadoresNativos;
 
 %}
 
+//palabras reservadas
+
+PUBLICA = "public"
+PRIVATEA = "private"
+PROTECTEDA = "protected"
+FINALA = "final"
+THISA = "this"
+IMPORTA = "import"
+
+//expresiones regulares
+//ID = [a-zA-Z][a-zA-Z | 0-9]*
+ENTERO = [0-9]+
+DECIMAL = [0-9]+[.][0-9]+
+ESPACIO = [ , \n, \t, \r]+
+
 //tipo de variables
 
 INTT = "int"
@@ -28,15 +43,6 @@ CHART = "char"
 DOUBLET = "double"
 OBJECTT = "Object"
 VOIDT = "void"
-
-//palabras reservadas
-
-PUBLICA = "public"
-PRIVATEA = "private"
-PROTECTEDA = "protected"
-FINALA = "final"
-THISA = "this"
-IMPORTA = "import"
 
 //sentencias de control
 
@@ -86,6 +92,17 @@ DOSBARRA = "//"
 /*tercera sección: reglas léxicas*/
 
 %%
+{PUBLICA}									{ System.out.printf("\nPUBLICA (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{PRIVATEA}									{ System.out.printf("\nPRIVATEA (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{PROTECTEDA}								{ System.out.printf("\nPROTECTEDA (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{FINALA}								    { System.out.printf("\nFINALA (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{THISA}                                     { System.out.printf("\nTHISA (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{IMPORTA}                                   { System.out.printf("\nIMPORTA (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+
+//{ID}									    { System.out.printf("\nID (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{ENTERO}									{ System.out.printf("\nENTERO (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{DECIMAL}									{ System.out.printf("\nDECIMAL (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{ESPACIO}									{ System.out.printf("\nESPACIO (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
 
 {INTT}										{ System.out.printf("\nINTT (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
 {BOOLEANT}								    { System.out.printf("\nBOOLEANT (%s)", yytext() +" en linea: "+yyline+" columna: "+yycolumn); }
@@ -94,13 +111,6 @@ DOSBARRA = "//"
 {DOUBLET}								    { System.out.printf("\nDOUBLET (%s)", yytext() +" en linea: "+yyline+" columna: "+yycolumn); }
 {OBJECTT}									{ System.out.printf("\nOBJECTT  (%s)", yytext() +" en linea: "+yyline+" columna: "+yycolumn); }
 {VOIDT}										{ System.out.printf("\nVOIDT (%s)", yytext() +" en linea: "+yyline+" columna: "+yycolumn); }
-
-{PUBLICA}									{ System.out.printf("\nPUBLICA (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
-{PRIVATEA}									{ System.out.printf("\nPRIVATEA (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
-{PROTECTEDA}								{ System.out.printf("\nPROTECTEDA (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
-{FINALA}								    { System.out.printf("\nFINALA (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
-{THISA}                                     { System.out.printf("\nTHISA (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
-{IMPORTA}                                   { System.out.printf("\nIMPORTA (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
 
 {IFC}								        { System.out.printf("\nIFC (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
 {ELSEC}								        { System.out.printf("\nELSEC (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
