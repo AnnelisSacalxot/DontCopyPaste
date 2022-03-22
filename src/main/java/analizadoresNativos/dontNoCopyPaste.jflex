@@ -1,6 +1,6 @@
 /*primera sección: código de usuario*/
 
-package AnalizadoresNativos;
+package analizadoresNativos;
 
 /*segunda sección: configuración*/
 
@@ -32,6 +32,7 @@ IMPORTA = "import"
 //ID = [a-zA-Z][a-zA-Z | 0-9]*
 ENTERO = [0-9]+
 DECIMAL = [0-9]+[.][0-9]+
+COMENTARIO = [ "//" | "/* */"][a-z | 0-9]*
 ESPACIO = [ , \n, \t, \r]+
 
 //tipo de variables
@@ -87,7 +88,6 @@ CORCHETECIERRA = "]"
 
 PUNTOCOMA = ";"
 PUNTO = "."
-DOSBARRA = "//"
 
 /*tercera sección: reglas léxicas*/
 
@@ -102,6 +102,7 @@ DOSBARRA = "//"
 //{ID}									    { System.out.printf("\nID (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
 {ENTERO}									{ System.out.printf("\nENTERO (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
 {DECIMAL}									{ System.out.printf("\nDECIMAL (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
+{COMENTARIO}							    { System.out.printf("\nCOMENTARIO (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
 {ESPACIO}									{ System.out.printf("\nESPACIO (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
 
 {INTT}										{ System.out.printf("\nINTT (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
@@ -145,7 +146,6 @@ DOSBARRA = "//"
 
 {PUNTOCOMA}							        { System.out.printf("\nPUNTOCOMA (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
 {PUNTO}							            { System.out.printf("\nPUNTO (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
-{DOSBARRA}							        { System.out.printf("\nDOSBARRA  (%s)", yytext()+" en linea: "+yyline+" columna: "+yycolumn); }
 
 
 

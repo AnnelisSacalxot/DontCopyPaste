@@ -1,0 +1,60 @@
+/*primera sección: definición del paquete e imports */
+
+package analizadoresNativos;
+import java_cup.runtime.*;
+
+/*segunda sección: código de usuario */
+
+    parser code {:
+
+    :};
+
+/*tercera sección: simbolos terminales y no terminales*/
+
+//Terminales
+
+terminal MAS, MENOS, MULTIPLICACION, DIVISION, IGUAL, ESDISTINTO, Y, O, NO, MAYOR, MAYORIGUAL, MENOR,
+         MENORIGUAL, PARENTESISABRE, PARENTESISCIERRA, LLAVEABRE, LLAVECIERRA, CORCHETEABRE,
+         CORCHETECIERRA, PUNTOCOMA, PUNTO, PUBLICA, PRIVATEA, PROTECTEDA, FINALA, THISA, IMPORTA,
+         INTT, BOOLEANT, STRINGT, CHART,DOUBLET, OBJECTT, VOIDT;
+
+terminal Integer ENTERO;
+terminal Integer DECIMAL;
+terminal String COMENTARIO;
+
+//No terminales
+
+nonterminal inicio, bloque, alcance, tipo, id, parametro, sentencia;
+
+/*cuarta sección: declaración de precendencia */
+
+precedence left MAS, RESTA, DIVISION, MULTIPLICACION;
+
+precedence left CORCHETEABRE, CORCHETECIERRA, LLAVEABRE, LLAVECIERRA, PARENTESISABRE, PARENTESISCIERRA;
+
+/*quinta sección: definición del simbolo inicial y reglas de producción */
+
+start with inicio;
+
+//empiezo a describir las reglas de producción
+
+inicio          ::= bloque
+                ;
+
+bloque          ::= alcance tipo id parametro sentencia
+                ;
+
+alcance         ::= PUBLICA | PRIVATEA | PROTECTEDA | FINALA
+                ;
+
+tipo            ::=  INTT | BOOLEANT | STRINGT | CHART | DOUBLET | OBJECTT | VOIDT
+                ;
+
+id              ::=
+                ;
+
+parametro       ::=
+                ;
+
+
+
