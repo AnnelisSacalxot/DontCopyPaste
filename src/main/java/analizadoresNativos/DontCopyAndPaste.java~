@@ -4,19 +4,16 @@
 
 /*primera sección: código de usuario*/
 
-package analizadores;
-
-import java_cup.runtime.Scanner;
+package analizadoresNativos;
 import java_cup.runtime.Symbol;
-
-import java.io.IOException;
+import java_cup.runtime.*;
 
 /*segunda sección: configuración*/
 
 
 // See https://github.com/jflex-de/jflex/issues/222
 @SuppressWarnings("FallThrough")
-public class DontCopyAndPaste implements Scanner {
+public class DontCopyAndPaste implements java_cup.runtime.Scanner {
 
   /** This character denotes the end of file. */
   public static final int YYEOF = -1;
@@ -612,9 +609,9 @@ public class DontCopyAndPaste implements Scanner {
    * or an I/O-Error occurs.
    *
    * @return the next token.
-   * @exception IOException if any I/O-Error occurs.
+   * @exception java.io.IOException if any I/O-Error occurs.
    */
-  @Override  public Symbol next_token() throws IOException {
+  @Override  public java_cup.runtime.Symbol next_token() throws java.io.IOException {
     int zzInput;
     int zzAction;
 

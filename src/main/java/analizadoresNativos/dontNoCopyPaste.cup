@@ -7,6 +7,20 @@ import java_cup.runtime.*;
 
     parser code {:
 
+        	private Symbol s;
+
+        	public void syntax_error(Symbol s){
+        		this.s = s;
+        	}
+
+        	public Symbol getS(){
+        		return this.s;
+        	}
+
+                    public void syntax_error(Symbol cur_token) {
+                        System.out.println("Error "+cur_token);
+                    }
+
     :};
 
 /*tercera sección: simbolos terminales y no terminales*/
@@ -16,19 +30,20 @@ import java_cup.runtime.*;
 terminal MAS, MENOS, MULTIPLICACION, DIVISION, IGUAL, ESDISTINTO, Y, O, NO, MAYOR, MAYORIGUAL, MENOR,
          MENORIGUAL, PARENTESISABRE, PARENTESISCIERRA, LLAVEABRE, LLAVECIERRA, CORCHETEABRE,
          CORCHETECIERRA, PUNTOCOMA, PUNTO, PUBLICA, PRIVATEA, PROTECTEDA, FINALA, THISA, IMPORTA,
-         INTT, BOOLEANT, STRINGT, CHART,DOUBLET, OBJECTT, VOIDT;
+         INTT, BOOLEANT, STRINGT, CHART, DOUBLET, OBJECTT, VOIDT, CLASST, BREAKS, RESTURNS, ID, INTEGERA;
 
 terminal Integer ENTERO;
 terminal Integer DECIMAL;
-terminal String COMENTARIO;
+terminal String CADENA;
+//terminal String COMENTARIO_SIMPLE, COMENTARIO_BLOQUE;
 
 //No terminales
 
-nonterminal inicio, bloque, alcance, tipo, id, parametro, sentencia;
+nonterminal inicio, bloque, alcance, tipo, cadena, parametro, sentencia, asignacion, salidaSentencia, llamadaFuncion, castear;
 
 /*cuarta sección: declaración de precendencia */
 
-precedence left MAS, RESTA, DIVISION, MULTIPLICACION;
+precedence left MAS, MENOS, DIVISION, MULTIPLICACION;
 
 precedence left CORCHETEABRE, CORCHETECIERRA, LLAVEABRE, LLAVECIERRA, PARENTESISABRE, PARENTESISCIERRA;
 
@@ -41,20 +56,45 @@ start with inicio;
 inicio          ::= bloque
                 ;
 
-bloque          ::= alcance tipo id parametro sentencia
+bloque          ::= PUBLICA CLASST parametro sentencia
+                 |  asignacion sentencia
+                 | salidaSentencia sentencia
+                 | llamadaFuncion
                 ;
+
+sentencia       ::= alcance tipo cadena parametro sentencia
+                 ;
 
 alcance         ::= PUBLICA | PRIVATEA | PROTECTEDA | FINALA
                 ;
 
-tipo            ::=  INTT | BOOLEANT | STRINGT | CHART | DOUBLET | OBJECTT | VOIDT
+tipo            ::=  INTT | BOOLEANT | STRINGT | CHART | DOUBLET | OBJECTT | VOIDT | castear tipo
                 ;
 
-id              ::=
+cadena          ::= ID
                 ;
 
-parametro       ::=
+parametro       ::= alcance ID
                 ;
+
+asignacion      ::= tipo ID PUNTOCOMA
+                 | tipo ID IGUAL ID PUNTOCOMA
+                 | tipo ID IGUAL ENTERO PUNTOCOMA
+                 ;
+
+salidaSentencia ::= RESTURNS ID PUNTOCOMA
+                 |  BREAKS PUNTOCOMA
+                 | THISA PUNTO ID PUNTOCOMA
+                 ;
+
+llamadaFuncion  ::= ID PARENTESISABRE parametro PARENTESISCIERRA PUNTOCOMA
+                 ;
+
+castear         ::= MAS INTEGERA
+                 |  MENOS INTEGERA
+                 |  DIVISION INTEGERA
+                 | MULTIPLICACION INTEGERA
+                 ;
 
 
 
