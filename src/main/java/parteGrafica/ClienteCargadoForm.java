@@ -8,13 +8,18 @@ package parteGrafica;
  *
  * @author annelis
  */
-public class ClienteForm extends javax.swing.JFrame {
+public class ClienteCargadoForm extends javax.swing.JFrame {
 
     /**
      * Creates new form ClienteForm
      */
-    public ClienteForm() {
+    public ClienteCargadoForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
+    }
+
+    ClienteCargadoForm(ClienterForm aThis, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -39,6 +44,7 @@ public class ClienteForm extends javax.swing.JFrame {
         ReporteDefjTabbed = new javax.swing.JTabbedPane();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jTabbedPane4 = new javax.swing.JTabbedPane();
+        regresarButton = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -52,8 +58,10 @@ public class ClienteForm extends javax.swing.JFrame {
         ConsolaMuestraTextArea.setRows(5);
         jScrollPane2.setViewportView(ConsolaMuestraTextArea);
 
+        jLabel1.setFont(new java.awt.Font("Abyssinica SIL", 0, 14)); // NOI18N
         jLabel1.setText("Consola");
 
+        EjecutarjButton.setFont(new java.awt.Font("Abyssinica SIL", 0, 14)); // NOI18N
         EjecutarjButton.setText("Ejecutar");
         EjecutarjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,6 +69,7 @@ public class ClienteForm extends javax.swing.JFrame {
             }
         });
 
+        AbrirjButton.setFont(new java.awt.Font("Abyssinica SIL", 0, 14)); // NOI18N
         AbrirjButton.setText("Abrir proyecto");
         AbrirjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,11 +77,21 @@ public class ClienteForm extends javax.swing.JFrame {
             }
         });
 
+        GuardarButton.setFont(new java.awt.Font("Abyssinica SIL", 0, 14)); // NOI18N
         GuardarButton.setText("Guardar ");
 
+        jTabbedPane1.setFont(new java.awt.Font("Abyssinica SIL", 0, 14)); // NOI18N
         jTabbedPane1.addTab("Reportes.def", ReporteDefjTabbed);
         jTabbedPane1.addTab("Resultados.json", jTabbedPane3);
         jTabbedPane1.addTab("Reportes", jTabbedPane4);
+
+        regresarButton.setFont(new java.awt.Font("Abyssinica SIL", 1, 14)); // NOI18N
+        regresarButton.setText("Regresar");
+        regresarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regresarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,6 +118,10 @@ public class ClienteForm extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(regresarButton)
+                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,14 +131,15 @@ public class ClienteForm extends javax.swing.JFrame {
                     .addComponent(AbrirjButton)
                     .addComponent(GuardarButton))
                 .addGap(18, 18, 18)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(EjecutarjButton)
                 .addGap(10, 10, 10)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addGap(3, 3, 3)
+                .addComponent(regresarButton))
         );
 
         pack();
@@ -128,6 +152,14 @@ public class ClienteForm extends javax.swing.JFrame {
     private void AbrirjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirjButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AbrirjButtonActionPerformed
+
+    private void regresarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarButtonActionPerformed
+        // Volver a la ventana principal de Cliente
+        ClienterForm regresar = new ClienterForm();
+        regresar.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_regresarButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,20 +178,21 @@ public class ClienteForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClienteForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteCargadoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClienteForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteCargadoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClienteForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteCargadoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClienteForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteCargadoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ClienteForm().setVisible(true);
+                new ClienteCargadoForm().setVisible(true);
             }
         });
     }
@@ -178,5 +211,6 @@ public class ClienteForm extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane jTabbedPane4;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton regresarButton;
     // End of variables declaration//GEN-END:variables
 }
