@@ -4,8 +4,12 @@
  */
 package parteGrafica;
 
+import java.io.File;
+import java.io.FileReader;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import socket.Cliente;
 import socket.Servidor;
 
@@ -48,6 +52,10 @@ public class ClienterForm extends javax.swing.JFrame implements Observer {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         AnalizarjButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 255, 204));
@@ -69,6 +77,11 @@ public class ClienterForm extends javax.swing.JFrame implements Observer {
 
         File2jButton.setFont(new java.awt.Font("Abyssinica SIL", 0, 14)); // NOI18N
         File2jButton.setText("Choose File 2");
+        File2jButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                File2jButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Abyssinica SIL", 0, 14)); // NOI18N
         jLabel1.setText("Proyecto 1");
@@ -84,59 +97,114 @@ public class ClienterForm extends javax.swing.JFrame implements Observer {
             }
         });
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane2.setViewportView(jTextArea2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(File1Button)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                .addComponent(File2jButton)
-                .addGap(70, 70, 70))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(85, 85, 85))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(53, 53, 53)
+                        .addComponent(jLabel1)
+                        .addGap(31, 31, 31))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(AbrirjButton)
-                        .addGap(31, 31, 31)
-                        .addComponent(GuardarjButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addComponent(AnalizarjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(42, 42, 42)
+                        .addComponent(GuardarjButton)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(166, 166, 166))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(File1Button)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(File2jButton)
+                .addGap(146, 146, 146))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(AnalizarjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(245, 245, 245))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AbrirjButton)
-                    .addComponent(GuardarjButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(File1Button)
-                    .addComponent(File2jButton))
-                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(AbrirjButton)
+                            .addComponent(GuardarjButton))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(File1Button)
+                            .addComponent(File2jButton))))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(AnalizarjButton)
-                .addGap(39, 39, 39))
+                .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void File1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_File1ButtonActionPerformed
-        // TODO add your handling code here:
+        // abrir la ruta de proyectos
+        JFileChooser abrir = new JFileChooser();
+        
+        //filtro para que solo acepte extensiones .java
+        FileNameExtensionFilter filtroAceptado = new FileNameExtensionFilter(".java","java");
+        //validamos el filtro
+        abrir.setFileFilter(filtroAceptado);
+        
+        //se abre la ventana para seleccionar el archivo deseado
+        int seleccion = abrir.showOpenDialog(this);
+        
+        if(seleccion == JFileChooser.APPROVE_OPTION){
+        //seleccion del archivo
+        File archivo = abrir.getSelectedFile();
+        
+        try (FileReader leer = new FileReader(archivo);){
+            String cadena = "";
+            int valor = leer.read();
+            
+            while(valor != -1){
+                cadena = cadena+(char)valor;
+                valor = leer.read();
+            }
+            //mostrando en el area correspondiente
+            this.jTextArea1.setText(cadena);
+        
+        } catch(Exception e){
+        }
+                
+        }
     }//GEN-LAST:event_File1ButtonActionPerformed
 
     private void AnalizarjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnalizarjButtonActionPerformed
@@ -145,10 +213,46 @@ public class ClienterForm extends javax.swing.JFrame implements Observer {
         abrirVentana.setVisible(true);
         
         this.dispose();
+       
         
-        //si existe algun error se envia al servidor 
+        //analisis de ambos text area si se ejecuta de manera correcta
+        
+                //si existe algun error se envia al servidor 
         //Cliente notificacion = new Cliente(6000, mensaje);
     }//GEN-LAST:event_AnalizarjButtonActionPerformed
+
+    private void File2jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_File2jButtonActionPerformed
+        // abrir archivo o carpeta correspondiente
+                JFileChooser abrir = new JFileChooser();
+                
+         //filtro para que solo acepte extensiones .java
+        FileNameExtensionFilter filtroAceptado = new FileNameExtensionFilter(".JAVA","java");
+        //validamos el filtro
+        abrir.setFileFilter(filtroAceptado);
+                
+        //se abre la ventana para seleccionar el archivo deseado
+        int seleccion = abrir.showOpenDialog(this);
+        
+        if(seleccion == JFileChooser.APPROVE_OPTION){
+        //seleccion del archivo
+        File archivo = abrir.getSelectedFile();
+        
+        try (FileReader leer = new FileReader(archivo);){
+            String cadena = "";
+            int valor = leer.read();
+            
+            while(valor != -1){
+                cadena = cadena+(char)valor;
+                valor = leer.read();
+            }
+            //mostrando en el area correspondiente
+            this.jTextArea2.setText(cadena);
+        
+        } catch(Exception e){
+        }
+                
+        }
+    }//GEN-LAST:event_File2jButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,6 +298,10 @@ public class ClienterForm extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton GuardarjButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     // End of variables declaration//GEN-END:variables
 
     @Override
