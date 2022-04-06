@@ -5,9 +5,14 @@
 package parteGrafica;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import socket.Cliente;
@@ -66,6 +71,11 @@ public class ClienterForm extends javax.swing.JFrame implements Observer {
 
         GuardarjButton.setFont(new java.awt.Font("Abyssinica SIL", 0, 14)); // NOI18N
         GuardarjButton.setText("Guardar");
+        GuardarjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarjButtonActionPerformed(evt);
+            }
+        });
 
         File1Button.setFont(new java.awt.Font("Abyssinica SIL", 0, 14)); // NOI18N
         File1Button.setText("Choose File 1");
@@ -222,14 +232,14 @@ public class ClienterForm extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_AnalizarjButtonActionPerformed
 
     private void File2jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_File2jButtonActionPerformed
-        // abrir archivo o carpeta correspondiente
-                JFileChooser abrir = new JFileChooser();
-                
-         //filtro para que solo acepte extensiones .java
-        FileNameExtensionFilter filtroAceptado = new FileNameExtensionFilter(".JAVA","java");
+              // abrir la ruta de proyectos
+        JFileChooser abrir = new JFileChooser();
+        
+        //filtro para que solo acepte extensiones .java
+        FileNameExtensionFilter filtroAceptado = new FileNameExtensionFilter(".java","java");
         //validamos el filtro
         abrir.setFileFilter(filtroAceptado);
-                
+        
         //se abre la ventana para seleccionar el archivo deseado
         int seleccion = abrir.showOpenDialog(this);
         
@@ -248,11 +258,35 @@ public class ClienterForm extends javax.swing.JFrame implements Observer {
             //mostrando en el area correspondiente
             this.jTextArea2.setText(cadena);
         
-        } catch(Exception e){
-        }
+        }   catch (IOException ex) {
+                Logger.getLogger(ClienterForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 
         }
     }//GEN-LAST:event_File2jButtonActionPerformed
+
+    private void GuardarjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarjButtonActionPerformed
+        // para guardar ambos archivos
+         // abrir archivo o carpeta correspondiente
+             JFileChooser abrir = new JFileChooser();
+         
+        //se abre la ventana para seleccionar el archivo deseado
+        int seleccion = abrir.showOpenDialog(this);
+              
+        if(seleccion == JFileChooser.APPROVE_OPTION){
+            
+            File archivo = abrir.getSelectedFile();
+           
+              try (FileWriter escribir = new FileWriter(archivo);){
+            //capturando lo que existe en el text area, por ahora se guardan los archivos juntos
+            //por lo que en un mismo archivo van todas las clases unidas
+        escribir.write(this.jTextArea1.getText()); 
+        escribir.write(this.jTextArea2.getText()); 
+        }   catch (IOException ex) {
+                Logger.getLogger(ClienterForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_GuardarjButtonActionPerformed
 
     /**
      * @param args the command line arguments

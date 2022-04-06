@@ -40,45 +40,45 @@ import java_cup.runtime.*;
 
 //palabras reservadas
 
-PUBLICA = "public"
-PRIVATEA = "private"
-PROTECTEDA = "protected"
-FINALA = "final"
-THISA = "this"
-IMPORTA = "import"
-INTEGERA = "Intefer"
+PUBLICR = "public"
+PRIVATER = "private"
+PROTECTEDR = "protected"
+FINALR = "final"
+THISR = "this"
+IMPORTR = "import"
+INTEGERR = "Intefer"
+
+//tipo de variables
+
+VOIDTV = "void"
+CLASSTV = "class"
+INTTV = "int"
+BOOLEANTV = "boolean"
+STRINGTV = "String"
+CHARTV = "char"
+DOUBLETV = "double"
+OBJECTTV = "Object"
+
 
 //expresiones regulares
-ID = [a-z,A-Z][a-z,A-Z0-9]*
 CADENA = [a-zA-Z]+
 ENTERO = [0-9]+
 DECIMAL = [0-9]+[.][0-9]+
 ESPACIO = "" , "\n" , "\t" , "\r"
 
-//tipo de variables
-
-INTT = "int"
-BOOLEANT = "boolean"
-STRINGT = "String"
-CHART = "char"
-DOUBLET = "double"
-OBJECTT = "Object"
-VOIDT = "void"
-CLASST = "class"
-
 //sentencias de control
 
-IFC = "if"|"If"
-ELSEC = "else"
-FORC = "for"
-WHILEC = "while"
-DOWHILEC = "do while"
-SWITCHC = "switch"
+IFCC = "if"|"If"
+ELSECC = "else"
+FORCC = "for"
+WHILECC = "while"
+DOWHILECC = "do while"
+SWITCHCC = "switch"
 
 //sentencia salida
 
-BREAKS = "Break"
-RETURNS = "return"
+BREAKSA = "Break"
+RETURNSA = "return"
 
 //operadores aritmeticos
 
@@ -113,42 +113,46 @@ IN_COMENTARIO_SIMPLE = "//"
 IN_COMENTARIO_BLOQUE = "/*"
 FIN_COMENTARIO_BLOQUE = "*/"
 
+
+//reglas de produccion
+ID = ({CADENA})({CADENA} | {ENTERO})*
+
 /*tercera sección: reglas léxicas*/
 
 %%
-{PUBLICA}									{ return new Symbol(sym.PUBLICA, yyline + 1, yycolumn + 1, yytext()); }
-{PRIVATEA}									{ return new Symbol(sym.PRIVATEA, yyline + 1, yycolumn + 1, yytext()); }
-{PROTECTEDA}								{ return new Symbol(sym.PROTECTEDA, yyline + 1, yycolumn + 1, yytext()); }
-{FINALA}								    { return new Symbol(sym.FINALA, yyline + 1, yycolumn + 1, yytext()); }
-{THISA}                                     { return new Symbol(sym.THISA, yyline + 1, yycolumn + 1, yytext()); }
-{IMPORTA}                                   { return new Symbol(sym.IMPORTA, yyline + 1, yycolumn + 1, yytext()); }
-{INTEGERA}                                  { return new Symbol(sym.INTEGERA, yyline + 1, yycolumn + 1, yytext()); }
+{PUBLICR}									{ return new Symbol(sym.PUBLICR, yyline + 1, yycolumn + 1, yytext()); }
+{PRIVATER}									{ return new Symbol(sym.PRIVATER, yyline + 1, yycolumn + 1, yytext()); }
+{PROTECTEDR}								{ return new Symbol(sym.PROTECTEDR, yyline + 1, yycolumn + 1, yytext()); }
+{FINALR}								    { return new Symbol(sym.FINALR, yyline + 1, yycolumn + 1, yytext()); }
+{THISR}                                     { return new Symbol(sym.THISR, yyline + 1, yycolumn + 1, yytext()); }
+{IMPORTR}                                   { return new Symbol(sym.IMPORTR, yyline + 1, yycolumn + 1, yytext()); }
+{INTEGERR}                                  { return new Symbol(sym.INTEGERR, yyline + 1, yycolumn + 1, yytext()); }
 
-{ID}									    { return new Symbol(sym.ID, yyline + 1, yycolumn + 1, yytext()); }
+{VOIDTV}									{ return new Symbol(sym.VOIDTV, yyline + 1, yycolumn + 1, yytext()); }
+{CLASSTV }                                  { return new Symbol(sym.CLASSTV , yyline + 1, yycolumn + 1, yytext());) }
+{INTTV}										{ return new Symbol(sym.INITTV, yyline + 1, yycolumn + 1, yytext()); }
+{BOOLEANTV}								    { return new Symbol(sym.BOOLEANTV, yyline + 1, yycolumn + 1, yytext()); }
+{STRINGTV}									{ return new Symbol(sym.STRINGTV, yyline + 1, yycolumn + 1, yytext()); }
+{CHARTV}									{ return new Symbol(sym.CHARTV, yyline + 1, yycolumn + 1, yytext()); }
+{DOUBLETV}								    { return new Symbol(sym.DOUBLETV, yyline + 1, yycolumn + 1, yytext()); }
+{OBJECTTV}									{ return new Symbol(sym.OBJECTTV, yyline + 1, yycolumn + 1, yytext()); }
+
+
 {CADENA}                                    { return new Symbol(sym.CADENA, yyline + 1, yycolumn + 1, yytext()); }
 {ENTERO}									{ return new Symbol(sym.ENTERO, yyline + 1, yycolumn + 1, yytext()); }
 {DECIMAL}									{ return new Symbol(sym.DECIMAL, yyline + 1, yycolumn + 1, yytext()); }
 //{COMENTARIO}							    { return new Symbol(sym.COMENTARIO, yyline + 1, yycolumn + 1, yytext()); }
 {ESPACIO}									{ return new Symbol(sym.ESPACIO, yyline + 1, yycolumn + 1, yytext()); }
 
-{INTT}										{ return new Symbol(sym.INITT, yyline + 1, yycolumn + 1, yytext()); }
-{BOOLEANT}								    { return new Symbol(sym.BOOLEANT, yyline + 1, yycolumn + 1, yytext()); }
-{STRINGT}									{ return new Symbol(sym.STRINGT, yyline + 1, yycolumn + 1, yytext()); }
-{CHART}									    { return new Symbol(sym.CHART, yyline + 1, yycolumn + 1, yytext()); }
-{DOUBLET}								    { return new Symbol(sym.DOUBLET, yyline + 1, yycolumn + 1, yytext()); }
-{OBJECTT}									{ return new Symbol(sym.OBJECTT, yyline + 1, yycolumn + 1, yytext()); }
-{VOIDT}										{ return new Symbol(sym.VOIDT, yyline + 1, yycolumn + 1, yytext()); }
-{CLASST}                                    { return new Symbol(sym.CLASST, yyline + 1, yycolumn + 1, yytext());) }
+{IFCC}								        { return new Symbol(sym.IFCC, yyline + 1, yycolumn + 1, yytext()); }
+{ELSECC}								        { return new Symbol(sym.ELSECC, yyline + 1, yycolumn + 1, yytext()); }
+{FORCC}								        { return new Symbol(sym.FORCC, yyline + 1, yycolumn + 1, yytext()); }
+{WHILECC}								    { return new Symbol(sym.WHILECC, yyline + 1, yycolumn + 1, yytext()); }
+{DOWHILECC}								    { return new Symbol(sym.DOWHILECC, yyline + 1, yycolumn + 1, yytext()); }
+{SWITCHCC}								    { return new Symbol(sym.SWITCHCC, yyline + 1, yycolumn + 1, yytext()); }
 
-{IFC}								        { return new Symbol(sym.IFC, yyline + 1, yycolumn + 1, yytext()); }
-{ELSEC}								        { return new Symbol(sym.ELSEC, yyline + 1, yycolumn + 1, yytext()); }
-{FORC}								        { return new Symbol(sym.FORC, yyline + 1, yycolumn + 1, yytext()); }
-{WHILEC}								    { return new Symbol(sym.WHILEC, yyline + 1, yycolumn + 1, yytext()); }
-{DOWHILEC}								    { return new Symbol(sym.DOWHILEC, yyline + 1, yycolumn + 1, yytext()); }
-{SWITCHC}								    { return new Symbol(sym.SWITCHC, yyline + 1, yycolumn + 1, yytext()); }
-
-{BREAKS}								    { return new Symbol(sym.BREAKS, yyline + 1, yycolumn + 1, yytext()); }
-{RETURNS}								    { return new Symbol(sym.RETURNS, yyline + 1, yycolumn + 1, yytext()); }
+{BREAKSA}								    { return new Symbol(sym.BREAKSA, yyline + 1, yycolumn + 1, yytext()); }
+{RETURNSA}								    { return new Symbol(sym.RETURNSA, yyline + 1, yycolumn + 1, yytext()); }
 
 {MAS}								        { return new Symbol(sym.MAS, yyline + 1, yycolumn + 1, yytext()); }
 {MENOS}								        { return new Symbol(sym.MENOS, yyline + 1, yycolumn + 1, yytext()); }
@@ -173,6 +177,8 @@ FIN_COMENTARIO_BLOQUE = "*/"
 
 {PUNTOCOMA}							        { return new Symbol(sym.PUNTOCOMA, yyline + 1, yycolumn + 1, yytext()); }
 {PUNTO}							            { return new Symbol(sym.PUNTO, yyline + 1, yycolumn + 1, yytext()); }
+
+{ID}                        			    { return new Symbol(sym.ID, yyline + 1, yycolumn + 1, yytext()); }
 
 //con los tokens que van armados con estados
 

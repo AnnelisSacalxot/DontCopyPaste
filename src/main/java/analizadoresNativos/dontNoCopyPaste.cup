@@ -27,10 +27,12 @@ import java_cup.runtime.*;
 
 //Terminales
 
-terminal MAS, MENOS, MULTIPLICACION, DIVISION, IGUAL, ESDISTINTO, Y, O, NO, MAYOR, MAYORIGUAL, MENOR,
-         MENORIGUAL, PARENTESISABRE, PARENTESISCIERRA, LLAVEABRE, LLAVECIERRA, CORCHETEABRE,
-         CORCHETECIERRA, PUNTOCOMA, PUNTO, PUBLICA, PRIVATEA, PROTECTEDA, FINALA, THISA, IMPORTA,
-         INTT, BOOLEANT, STRINGT, CHART, DOUBLET, OBJECTT, VOIDT, CLASST, BREAKS, RESTURNS, ID, INTEGERA;
+terminal PUBLICR, PRIVATER, PROTECTEDR, FINALR, THISR, IMPORTR, INTEGERR, VOIDTV, CLASSTV, INTTV,
+         BOOLEANTV, STRINGTV, CHARTV, DOUBLETV, OBJECTTV, IFCC, ELSECC, FORCC, WHILECC, DOWHILECC,
+         SWITCHCC, BREAKSA, RETURNSA, MAS, MENOS, MULTIPLICACION, DIVISION, IGUAL, ESDISTINTO, Y,
+         O, NO, MAYOR, MAYORIGUAL, MENOR, MENORIGUAL, PARENTESISABRE, PARENTESISCIERRA, LLAVEABRE,
+         LLAVECIERRA, CORCHETEABRE, CORCHETECIERRA, PUNTOCOMA, PUNTO, ID;
+
 
 terminal Integer ENTERO;
 terminal Integer DECIMAL;
@@ -43,7 +45,7 @@ nonterminal inicio, bloque, alcance, tipo, cadena, parametro, sentencia, asignac
 
 /*cuarta sección: declaración de precendencia */
 
-precedence left MAS, MENOS, DIVISION, MULTIPLICACION;
+precedence left  ID, MAS, MENOS, DIVISION, MULTIPLICACION;
 
 precedence left CORCHETEABRE, CORCHETECIERRA, LLAVEABRE, LLAVECIERRA, PARENTESISABRE, PARENTESISCIERRA;
 
@@ -56,7 +58,7 @@ start with inicio;
 inicio          ::= bloque
                 ;
 
-bloque          ::= PUBLICA CLASST parametro sentencia
+bloque          ::= PUBLICR CLASSTV parametro sentencia
                  |  asignacion sentencia
                  | salidaSentencia sentencia
                  | llamadaFuncion
@@ -65,10 +67,10 @@ bloque          ::= PUBLICA CLASST parametro sentencia
 sentencia       ::= alcance tipo cadena parametro sentencia
                  ;
 
-alcance         ::= PUBLICA | PRIVATEA | PROTECTEDA | FINALA
+alcance         ::= PUBLICR | PRIVATER | PROTECTEDR | FINALR
                 ;
 
-tipo            ::=  INTT | BOOLEANT | STRINGT | CHART | DOUBLET | OBJECTT | VOIDT | castear tipo
+tipo            ::=  INTTV | BOOLEANTV | STRINGTV | CHARTV | DOUBLETV | OBJECTTV | VOIDTV | castear tipo
                 ;
 
 cadena          ::= ID
@@ -82,18 +84,18 @@ asignacion      ::= tipo ID PUNTOCOMA
                  | tipo ID IGUAL ENTERO PUNTOCOMA
                  ;
 
-salidaSentencia ::= RESTURNS ID PUNTOCOMA
-                 |  BREAKS PUNTOCOMA
-                 | THISA PUNTO ID PUNTOCOMA
+salidaSentencia ::= RETURNSA ID PUNTOCOMA
+                 |  BREAKSA PUNTOCOMA
+                 | THISR PUNTO ID PUNTOCOMA
                  ;
 
 llamadaFuncion  ::= ID PARENTESISABRE parametro PARENTESISCIERRA PUNTOCOMA
                  ;
 
-castear         ::= MAS INTEGERA
-                 |  MENOS INTEGERA
-                 |  DIVISION INTEGERA
-                 | MULTIPLICACION INTEGERA
+castear         ::= MAS INTEGERR
+                 |  MENOS INTEGERR
+                 |  DIVISION INTEGERR
+                 | MULTIPLICACION INTEGERR
                  ;
 
 
